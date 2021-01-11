@@ -1,0 +1,90 @@
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title> Registro de usuarios </title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/starter-template/">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for("static", filename="bootstrap.min.css") }}">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{{ url_for("static", filename="signin.css") }}">
+  </head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('index') }}">Inicio <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('show_signup_form') }}">Registrar</a>
+        </li>
+      {% if current_user.is_anonymous %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('login') }}">Iniciar Sesión</a>
+        </li>
+      {% else %}
+        <li class="nav-item"> {{ current_user.name }} <span class="sr-only">(current)</span> </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}" >Cerrar Sesión</a>
+        </li>
+      {% endif %}
+    </ul>
+    
+  </div>
+</nav>
+
+<main role="main" class="container"> 
+<div class="card" style="width: 37%; text-align: start; position: relative; top: 30px; justify-content: end; flex-direction: row">
+    <div class="card-body">
+        <h1 class="h3 mb-3 font-weight-normal">Registro de usuarios</h1>
+        {% if error %}
+            <p style="color: red;"><strong>Error:</strong> {{ error }}
+        {% endif %}
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.name.label }}
+                <span style="padding: 24px;">{{ form.name }}<br></span>
+                {% for error in form.name.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                {{ form.email.label }} 
+                <span style="padding: 42px;">{{ form.email }}<br></span>
+                {% for error in form.email.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                {{ form.password.label }}
+                {{ form.password }}<br> 
+                {% for error in form.password.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+            {{ form.submit() }}
+            </div>
+        </form>
+    </div>
+</div>
+</main><!-- /.container -->
+</body>
+</html>
+

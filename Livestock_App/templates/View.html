@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" http-equiv="refresh" content="30">
+    <title> Location </title>
+	{{ gmap.js }}
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/starter-template/">
+
+    <!-- Bootstrap core CSS -->
+<link href="static/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{{ url_for("static", filename="starter-template.css") }}">
+  </head>
+  <body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('viewData') }}">Inicio <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('show_send_mail') }}">Enviar datos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('logout') }}" >Cerrar Sesión</a>
+      </li>
+      <li class="nav-item"> 
+        <a class="nav-link"  href="#" style="padding-left: 600px"> Bienvenido {{ current_user.name }} </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main role="main" class="container">
+<div class="column">
+    <div class="card" style="width: 15rem; position: absolute; top: 20%;">
+        <div class="card-body" style="text-align: center; justify-content: center; flex-direction: row">
+            <h5 class="card-title" style="text-align: center">Res #1</h3>
+            <p class="card-text" style="text-align: center; line-height: 0.8">Temperatura: {{ Temperatura1 }}°C</p>
+            <p class="card-text"style="text-align: center; line-height: 0.8">Latitud: {{ Latitud1 }}°</p>
+            <p class="card-text"style="text-align: center; line-height: 0.8">Longitud: {{ Longitud1 }}°</p>
+            <p class="card-text"style="text-align: center; line-height: 0.8">Status GPS: {{ StatusGPS1 }}</p>
+            <p class="card-text"style="text-align: center; line-height: 0.8">Status LoRa: Ok </p>
+        </div>
+    </div>
+    <div class="card" style="width: 15rem; position: absolute; top: 54%">
+        <div class="card-body" style="text-align: center; justify-content: center; flex-direction: row">
+            <h5 class="card-title" style="text-align: center">Res #2</h3>
+            <p class="card-text"style="text-align: center; line-height: 0.8">Temperatura: {{ Temperatura2 }}°C</p>
+            <p class="card-text"style="text-align: center; line-height: 0.8">Latitud: {{ Latitud2 }}°</p>
+            <p class="card-text"style="text-align: center; line-height: 0.8">Longitud: {{ Longitud2 }}°</p>
+            <p class="card-text"style="text-align: center; line-height: 0.8">Status GPS: {{ StatusGPS2 }}</p>
+            <p class="card-text"style="text-align: center; line-height: 0.8">Status LoRa: Ok </p>
+        </div>
+    </div>
+</div>
+<div class="column" style "width=100%; height=50%">
+    <div class="location" style="position: absolute; top: 19%; left: 33%; max-width: 900px; max-height: 200px" >
+        {{ gmap.html }}  
+    </div>
+</div>
+</main><!-- /.container -->
+
+
+{% block content %}{% endblock %}
+</body>
+</html>
